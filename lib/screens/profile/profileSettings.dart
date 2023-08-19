@@ -79,7 +79,7 @@ class ProfileSettings extends StatelessWidget{
                 children: [
                   ClipOval(
                       child: Image.asset(
-                        "images/Capture0.png",
+                        "images/logo01.png",
                         width: 85,
                         height:85,
                         fit: BoxFit.cover,

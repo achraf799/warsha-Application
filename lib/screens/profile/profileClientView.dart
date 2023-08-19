@@ -57,7 +57,7 @@ class ProfileClientView extends StatelessWidget{
               bottom: screenHeight*0.752,
               child: ClipOval(
                 child: Image.asset(
-                  "images/Capture0.png",
+                  "images/logo01.png",
                   width: 85,
                   height:85,
                   fit: BoxFit.cover,
