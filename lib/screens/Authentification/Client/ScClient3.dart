@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:warsha/screens/CustomButton.dart';
+import '../../../utils/dimensions.dart';
 import '../../Page02.dart';
 import '../../WarshaIntro/SkipButton.dart';
 import 'ScClient2.dart';
@@ -23,13 +25,16 @@ class _ScClient3State extends State<ScClient3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFBF5F3),
+      backgroundColor: const Color(0xFFFBF5F3),
       appBar: AppBar(
-        leadingWidth: 150,
+        leadingWidth: Dimension.height10 * 15,
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Container(
-          child: Image.asset('images/logo2.png'),
+          margin: EdgeInsets.only(left: Dimension.height10),
+          child: SvgPicture.asset(
+            'images/logo02.svg',
+          ),
         ),
       ),
       body: LayoutBuilder(
@@ -43,7 +48,7 @@ class _ScClient3State extends State<ScClient3> {
                 top: screenHeight * 0.07,
                 left: 0,
                 right: 0,
-                child: Center(
+                child: const Center(
                   child: Text(
                     'قم بملئ معلوماتك الشخصية',
                     style: TextStyle(
@@ -59,7 +64,7 @@ class _ScClient3State extends State<ScClient3> {
                 top: screenHeight * 0.17,
                 left: 0,
                 right: 0,
-                child: Center(
+                child: const Center(
                   child: SizedBox(
                     width: 338,
                     height: 49,
@@ -95,7 +100,6 @@ class _ScClient3State extends State<ScClient3> {
                   ),
                 ),
               ),
-
               Positioned(
                 top: screenHeight * 0.25,
                 right: 0,
@@ -109,24 +113,27 @@ class _ScClient3State extends State<ScClient3> {
                       obscureText: _obscureText,
                       decoration: InputDecoration(
                         hintText: 'كلمـــة السر ',
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           color: Colors.black38,
                           fontSize: 22.48,
                           fontFamily: 'Lalezar',
                           fontWeight: FontWeight.w400,
                         ),
-                        border: OutlineInputBorder(
+                        border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(22.5),
                           ),
                           borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: Color(0xFFE9E5E4),
-                        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                        fillColor: const Color(0xFFE9E5E4),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 10.0),
                         prefixIcon: SuffixIconButton(
                           icon: Icon(
-                            _obscureText ? Icons.visibility_off : Icons.visibility,
+                            _obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                             color: Colors.black38,
                           ),
                           onPressed: () {
@@ -135,7 +142,7 @@ class _ScClient3State extends State<ScClient3> {
                             });
                           },
                         ),
-                        suffixIcon: Icon(
+                        suffixIcon: const Icon(
                           Icons.lock,
                           color: Colors.black38,
                         ),
@@ -145,7 +152,6 @@ class _ScClient3State extends State<ScClient3> {
                   ),
                 ),
               ),
-
               Positioned(
                 top: screenHeight * 0.35,
                 right: 0,
@@ -159,24 +165,27 @@ class _ScClient3State extends State<ScClient3> {
                       obscureText: _obscureText1,
                       decoration: InputDecoration(
                         hintText: 'تأكييد كلمة السر ',
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           color: Colors.black38,
                           fontSize: 22.48,
                           fontFamily: 'Lalezar',
                           fontWeight: FontWeight.w400,
                         ),
-                        border: OutlineInputBorder(
+                        border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(22.5),
                           ),
                           borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: Color(0xFFE9E5E4),
-                        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                        fillColor: const Color(0xFFE9E5E4),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 10.0),
                         prefixIcon: SuffixIconButton(
                           icon: Icon(
-                            _obscureText1 ? Icons.visibility_off : Icons.visibility,
+                            _obscureText1
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                             color: Colors.black38,
                           ),
                           onPressed: () {
@@ -185,7 +194,7 @@ class _ScClient3State extends State<ScClient3> {
                             });
                           },
                         ),
-                        suffixIcon: Icon(
+                        suffixIcon: const Icon(
                           Icons.lock,
                           color: Colors.black38,
                         ),
@@ -203,7 +212,7 @@ class _ScClient3State extends State<ScClient3> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 306,
                         child: Opacity(
                           opacity: 0.75,
@@ -237,7 +246,6 @@ class _ScClient3State extends State<ScClient3> {
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -250,13 +258,14 @@ class _ScClient3State extends State<ScClient3> {
                   child: CustomButton(
                     text: 'متابعة',
                     fontSize: 25,
-                    buttonColor: Color(0xFFD56E3B),
+                    buttonColor: const Color(0xFFD56E3B),
                     onPressed: () {
                       Navigator.push(
                         context,
                         PageRouteBuilder(
-                          transitionDuration: Duration(milliseconds: 200),
-                          pageBuilder: (BuildContext context, Animation<double> animation,
+                          transitionDuration: const Duration(milliseconds: 200),
+                          pageBuilder: (BuildContext context,
+                              Animation<double> animation,
                               Animation<double> secondaryAnimation) {
                             return FadeTransition(
                               opacity: animation,
@@ -269,7 +278,7 @@ class _ScClient3State extends State<ScClient3> {
                   ),
                 ),
               ),
-              Positioned(
+              /*Positioned(
                 top: screenHeight * 0.71,
                 left: 0,
                 right: 0,
@@ -279,7 +288,7 @@ class _ScClient3State extends State<ScClient3> {
                     nextPage: ScClient2(),
                   ),
                 ),
-              ),
+              ),*/
               Positioned(
                 top: screenHeight * 0.83,
                 left: 0,
@@ -291,8 +300,8 @@ class _ScClient3State extends State<ScClient3> {
                     lineHeight: screenHeight * 0.01,
                     percent: 0.6,
                     barRadius: const Radius.circular(20),
-                    backgroundColor: Color(0xFFE9E5E4),
-                    progressColor: Color(0xFFD56E3B),
+                    backgroundColor: const Color(0xFFE9E5E4),
+                    progressColor: const Color(0xFFD56E3B),
                   ),
                 ),
               ),
@@ -305,7 +314,7 @@ class _ScClient3State extends State<ScClient3> {
                     'تحديد الحساب',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: Color(0xFF190B28),
+                      color: const Color(0xFF190B28),
                       fontSize: screenWidth * 0.035,
                       fontFamily: 'Lalezar',
                       fontWeight: FontWeight.w400,
@@ -316,7 +325,7 @@ class _ScClient3State extends State<ScClient3> {
               Positioned(
                 left: screenWidth * 0.25,
                 top: screenHeight * 0.85,
-                child: Opacity(
+                child: const Opacity(
                   opacity: 0.50,
                   child: Text(
                     'الإقامـــــة',
@@ -333,7 +342,7 @@ class _ScClient3State extends State<ScClient3> {
               Positioned(
                 left: screenWidth * 0.45,
                 top: screenHeight * 0.85,
-                child: Opacity(
+                child: const Opacity(
                   opacity: 1,
                   child: Text(
                     'كلمـــــــة الـــــسر',
@@ -356,7 +365,7 @@ class _ScClient3State extends State<ScClient3> {
                     'تأكيد رقم الهاتف',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: Color(0xFF190B28),
+                      color: const Color(0xFF190B28),
                       fontSize: screenWidth * 0.035,
                       fontFamily: 'Lalezar',
                       fontWeight: FontWeight.w400,
@@ -370,18 +379,19 @@ class _ScClient3State extends State<ScClient3> {
       ),
     );
   }
+
   DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
-    value: item,
-    child: Text(
-      item,
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 22.48,
-        fontFamily: 'Lalezar',
-        fontWeight: FontWeight.w400,
-      ),
-    ),
-  );
+        value: item,
+        child: Text(
+          item,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 22.48,
+            fontFamily: 'Lalezar',
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      );
 }
 
 class SuffixIconButton extends StatefulWidget {
@@ -414,4 +424,3 @@ class _SuffixIconButtonState extends State<SuffixIconButton> {
     );
   }
 }
-

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:warsha/routes/route_helper.dart';
 import 'package:warsha/screens/HomePage.dart';
 
-class Splash extends StatefulWidget {
-  const Splash({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<Splash> createState() => _SplashState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashState extends State<Splash> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -17,11 +19,7 @@ class _SplashState extends State<Splash> {
 
   _navigateToHome() async {
     await Future.delayed(const Duration(milliseconds: 2000));
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => HomePage()),
-    );
+    Get.offAndToNamed(RouteHelper.getHomePage());
   }
 
   @override

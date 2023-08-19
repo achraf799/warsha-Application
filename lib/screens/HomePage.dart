@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:warsha/screens/Page01.dart';
+import 'package:get/get.dart';
+import 'package:warsha/routes/route_helper.dart';
+import 'package:warsha/utils/dimensions.dart';
 
 import 'CustomButton.dart';
 
@@ -14,9 +15,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: Stack(
         children: [
@@ -31,9 +29,9 @@ class _HomePageState extends State<HomePage> {
           Positioned(
             left: 0,
             right: 0,
-            top: screenHeight * 0.34,
+            top: Dimension.screenHeight * 0.34,
             child: SizedBox(
-              height: screenHeight * 0.06,
+              height: Dimension.screenHeight * 0.06,
               child: Center(
                 child: Text(
                   'Welcome to'.toUpperCase(),
@@ -41,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                     fontFamily: 'Poppins',
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w700,
-                    fontSize: screenWidth * 0.05,
+                    fontSize: Dimension.screenWidth * 0.05,
                     height: 1.5,
                     color: Colors.white,
                   ),
@@ -50,11 +48,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Positioned(
-            left: screenWidth * 0.1,
-            right: screenWidth * 0.1,
-            top: screenHeight * 0.39,
+            left: Dimension.screenWidth * 0.1,
+            right: Dimension.screenWidth * 0.1,
+            top: Dimension.screenHeight * 0.39,
             child: SizedBox(
-              height: screenHeight * 0.08,
+              height: Dimension.screenHeight * 0.08,
               child: Center(
                 child: Hero(
                   tag: 'logo',
@@ -69,13 +67,13 @@ class _HomePageState extends State<HomePage> {
           Positioned(
             left: 0,
             right: 0,
-            top: screenHeight * 0.52,
+            top: Dimension.screenHeight * 0.52,
             child: SizedBox(
-              width: screenWidth * 0.9,
-              height: screenHeight * 0.12,
+              width: Dimension.screenWidth * 0.9,
+              height: Dimension.screenHeight * 0.12,
               child: Container(
-                width: screenWidth * 0.9,
-                height: screenHeight * 0.12,
+                width: Dimension.screenWidth * 0.9,
+                height: Dimension.screenHeight * 0.12,
                 child: Center(
                   child: RichText(
                     textAlign: TextAlign.center,
@@ -85,11 +83,11 @@ class _HomePageState extends State<HomePage> {
                         fontFamily: 'Lalezar',
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.w400,
-                        fontSize: screenWidth * 0.08,
+                        fontSize: Dimension.screenWidth * 0.08,
                         height: 1.4,
                         color: Colors.white,
                       ),
-                      children: [
+                      children: const [
                         TextSpan(
                           text: 'الطلب',
                           style: TextStyle(
@@ -104,19 +102,18 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Positioned(
-            left: screenWidth * 0.1,
-            top: screenHeight * 0.8,
-            right: screenWidth * 0.1,
+            left: Dimension.screenWidth * 0.1,
+            top: Dimension.screenHeight * 0.8,
+            right: Dimension.screenWidth * 0.1,
             child: Center(
               child: CustomButton(
                 text: 'متابعة',
-                fontSize: screenWidth * 0.06,
+                fontSize: Dimension.screenWidth * 0.06,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Page01()),
-                  );
-                }, buttonColor: Color(0xFFD56E3B),
+                  print("pressed");
+                  Get.offAndToNamed(RouteHelper.getPage01());
+                },
+                buttonColor: const Color(0xFFD56E3B),
               ),
             ),
           ),
@@ -125,5 +122,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-

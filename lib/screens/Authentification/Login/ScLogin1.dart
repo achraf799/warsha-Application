@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:warsha/screens/CustomButton.dart';
+import 'package:warsha/utils/dimensions.dart';
 import '../../Page02.dart';
 import '../../WarshaIntro/SkipButton.dart';
 import 'ScNopswrd.dart';
@@ -20,29 +22,27 @@ class _ScLogin1State extends State<ScLogin1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFBF5F3),
+      backgroundColor: const Color(0xFFFBF5F3),
       appBar: AppBar(
-        leadingWidth: 150,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Container(
-          child: Image.asset('images/logo2.png'),
-        ),
-      ),
+          leadingWidth: Dimension.height10 * 15,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: Container(
+              margin: EdgeInsets.only(left: Dimension.height10),
+              child: SvgPicture.asset(
+                'images/logo02.svg',
+              ))),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          final screenHeight = MediaQuery.of(context).size.height;
-          final screenWidth = MediaQuery.of(context).size.width;
-
           return Stack(
             children: [
               Positioned(
-                top: screenHeight * 0.07,
+                top: Dimension.screenHeight * 0.07,
                 left: 0,
                 right: 0,
-                child: Center(
+                child: const Center(
                   child: Text(
-                    'قم بملئ معلوماتك الشخصية',
+                    'تسجيل الدخول',
                     style: TextStyle(
                       color: Color(0xFF190B28),
                       fontSize: 30.48,
@@ -53,13 +53,13 @@ class _ScLogin1State extends State<ScLogin1> {
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.25,
+                top: Dimension.screenHeight * 0.15,
                 left: 0,
                 right: 0,
                 child: Center(
                   child: SizedBox(
-                    width: 338,
-                    height: 49,
+                    width: Dimension.height10 * 31.3,
+                    height: Dimension.height10 * 5.4,
                     child: Opacity(
                       opacity: 0.80,
                       child: Row(
@@ -68,22 +68,15 @@ class _ScLogin1State extends State<ScLogin1> {
                         children: [
                           Flexible(
                             child: Text(
-                              'املأ المعلومات باللغة الفرنسية حتى لا تحدث أيّة مشاكل في مرحلة التسجيل',
+                              "مرحبا بك مجددا في ورشة لبدأ استخدام حسابك ادخل المعلومات التالية :",
                               style: TextStyle(
-                                color: Color(0xFF190B28),
-                                fontSize: 16,
+                                color: const Color(0xFF190B28),
+                                fontSize: Dimension.height10 * 1.6,
                                 fontFamily: 'Lalezar',
                                 fontWeight: FontWeight.w400,
                               ),
                               textAlign: TextAlign.right,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(right: 0, top: 0),
-                            child: Icon(
-                              Icons.star,
-                              color: Colors.red,
-                              size: 16,
+                              textDirection: TextDirection.rtl,
                             ),
                           ),
                         ],
@@ -93,34 +86,35 @@ class _ScLogin1State extends State<ScLogin1> {
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.25,
+                top: Dimension.screenHeight * 0.25,
                 right: 0,
                 left: 0,
                 child: Center(
                   child: Container(
-                    width: 400,
-                    height: 48,
+                    width: Dimension.height10 * 34,
+                    height: Dimension.height10 * 4.8,
                     child: TextField(
                       controller: _phoneController,
                       decoration: InputDecoration(
                         hintText: 'رقم الهاتف ',
                         hintStyle: TextStyle(
                           color: Colors.black38,
-                          fontSize: 22.48,
+                          fontSize: Dimension.height10 * 2.248,
                           fontFamily: 'Lalezar',
                           fontWeight: FontWeight.w400,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(22.5),
+                            Radius.circular(Dimension.height10 * 2.25),
                           ),
                           borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: Color(0xFFE9E5E4),
-                        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-
-                        suffixIcon: Icon(
+                        fillColor: const Color(0xFFE9E5E4),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: Dimension.height10,
+                            horizontal: Dimension.height10),
+                        suffixIcon: const Icon(
                           Icons.phone_enabled,
                           color: Colors.black38,
                         ),
@@ -131,13 +125,13 @@ class _ScLogin1State extends State<ScLogin1> {
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.35,
+                top: Dimension.screenHeight * 0.35,
                 right: 0,
                 left: 0,
                 child: Center(
                   child: Container(
-                    width: 400,
-                    height: 48,
+                    width: Dimension.height10 * 34,
+                    height: Dimension.height10 * 4.8,
                     child: TextField(
                       controller: _pswrdController,
                       obscureText: _obscureText,
@@ -145,22 +139,26 @@ class _ScLogin1State extends State<ScLogin1> {
                         hintText: 'كلمـــة السر ',
                         hintStyle: TextStyle(
                           color: Colors.black38,
-                          fontSize: 22.48,
+                          fontSize: Dimension.height10 * 2.248,
                           fontFamily: 'Lalezar',
                           fontWeight: FontWeight.w400,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(22.5),
+                            Radius.circular(Dimension.height10 * 2.25),
                           ),
                           borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: Color(0xFFE9E5E4),
-                        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                        fillColor: const Color(0xFFE9E5E4),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: Dimension.height10,
+                            horizontal: Dimension.height10),
                         prefixIcon: SuffixIconButton(
                           icon: Icon(
-                            _obscureText ? Icons.visibility_off : Icons.visibility,
+                            _obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                             color: Colors.black38,
                           ),
                           onPressed: () {
@@ -169,7 +167,7 @@ class _ScLogin1State extends State<ScLogin1> {
                             });
                           },
                         ),
-                        suffixIcon: Icon(
+                        suffixIcon: const Icon(
                           Icons.lock,
                           color: Colors.black38,
                         ),
@@ -179,107 +177,110 @@ class _ScLogin1State extends State<ScLogin1> {
                   ),
                 ),
               ),
-
               Positioned(
-                top: screenHeight * 0.6,
+                top: Dimension.screenHeight * 0.6,
                 left: 0,
-                right: 0,child: Opacity(
-          opacity: 0.8,
-                child: Center(
-                  child: SizedBox(
-                      width: screenWidth * 0.9,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    PageRouteBuilder(
-                                      transitionDuration: Duration(milliseconds: 200),
-                                      pageBuilder: (BuildContext context,
-                                          Animation<double> animation,
-                                          Animation<double> secondaryAnimation) {
-                                        return FadeTransition(
-                                          opacity: animation,
-                                          child: Page02(),
-                                        );
-                                      },
+                right: 0,
+                child: Opacity(
+                  opacity: 0.8,
+                  child: Center(
+                    child: SizedBox(
+                        width: Dimension.screenWidth * 1.2,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        transitionDuration:
+                                            const Duration(milliseconds: 200),
+                                        pageBuilder: (BuildContext context,
+                                            Animation<double> animation,
+                                            Animation<double>
+                                                secondaryAnimation) {
+                                          return FadeTransition(
+                                            opacity: animation,
+                                            child: const Page02(),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: const Text(
+                                    ' من هنا',
+                                    style: TextStyle(
+                                      color: Color(0xFFD56E3B),
+                                      fontSize: 21,
+                                      fontFamily: 'Lalezar',
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                  );
-                                },
-                                child: Text(
-                                  ' من هنا',
+                                  ),
+                                ),
+                                Text(
+                                  'ليس لديك حساب؟ قم بإنشاء حسابك ',
                                   style: TextStyle(
-                                    color: Color(0xFFD56E3B),
-                                    fontSize: 21,
+                                    color: const Color(0xFF190B28),
+                                    fontSize: Dimension.height10 * 2.1,
                                     fontFamily: 'Lalezar',
                                     fontWeight: FontWeight.w400,
                                   ),
+                                  textDirection: TextDirection.rtl,
+                                  textAlign: TextAlign.right,
                                 ),
-                              ),
-                              Text(
-                                'لديك حساب بالفعل؟ قم بتسجيل دخولك',
+                              ],
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    transitionDuration:
+                                        const Duration(milliseconds: 200),
+                                    pageBuilder: (BuildContext context,
+                                        Animation<double> animation,
+                                        Animation<double> secondaryAnimation) {
+                                      return FadeTransition(
+                                        opacity: animation,
+                                        child: ScNopswrd(),
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'نسيت كلمة السر؟',
                                 style: TextStyle(
-                                  color: Color(0xFF190B28),
+                                  color: Color(0xFFD56E3B),
                                   fontSize: 21,
                                   fontFamily: 'Lalezar',
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-
-                            ],
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                PageRouteBuilder(
-                                  transitionDuration: Duration(milliseconds: 200),
-                                  pageBuilder: (BuildContext context,
-                                      Animation<double> animation,
-                                      Animation<double> secondaryAnimation) {
-                                    return FadeTransition(
-                                      opacity: animation,
-                                      child: ScNopswrd(),
-                                    );
-                                  },
-                                ),
-                              );
-                            },
-                            child:Text(
-                              'نسيت كلمة السر؟',
-                              style: TextStyle(
-                                color: Color(0xFFD56E3B),
-                                fontSize: 21,
-                                fontFamily: 'Lalezar',
-                                fontWeight: FontWeight.w400,
-                              ),
                             ),
-                            ),
-                        ],
-                      )
+                          ],
+                        )),
                   ),
                 ),
               ),
-              ),
-
               Positioned(
-                top: screenHeight * 0.5,
+                top: Dimension.screenHeight * 0.5,
                 left: 0,
                 right: 0,
                 child: Center(
                   child: CustomButton(
                     text: 'تسجيل الدخول',
-                    fontSize: 25,
-                    buttonColor: Color(0xFFD56E3B),
+                    fontSize: Dimension.height10 * 2.5,
+                    buttonColor: const Color(0xFFD56E3B),
                     onPressed: () {
                       Navigator.push(
                         context,
                         PageRouteBuilder(
-                          transitionDuration: Duration(milliseconds: 200),
-                          pageBuilder: (BuildContext context, Animation<double> animation,
+                          transitionDuration: const Duration(milliseconds: 200),
+                          pageBuilder: (BuildContext context,
+                              Animation<double> animation,
                               Animation<double> secondaryAnimation) {
                             return FadeTransition(
                               opacity: animation,
@@ -292,25 +293,25 @@ class _ScLogin1State extends State<ScLogin1> {
                   ),
                 ),
               ),
-
             ],
           );
         },
       ),
     );
   }
+
   DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
-    value: item,
-    child: Text(
-      item,
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 22.48,
-        fontFamily: 'Lalezar',
-        fontWeight: FontWeight.w400,
-      ),
-    ),
-  );
+        value: item,
+        child: Text(
+          item,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 22.48,
+            fontFamily: 'Lalezar',
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      );
 }
 
 class SuffixIconButton extends StatefulWidget {
@@ -343,4 +344,3 @@ class _SuffixIconButtonState extends State<SuffixIconButton> {
     );
   }
 }
-

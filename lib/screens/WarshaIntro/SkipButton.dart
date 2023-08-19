@@ -1,12 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../Page02.dart';
+import 'package:get/get.dart';
+import 'package:warsha/utils/dimensions.dart';
 
 class SkipButton extends StatelessWidget {
   final String buttonText;
-  final Widget nextPage;
+  final String nextPage;
 
   const SkipButton({
+    super.key,
     required this.buttonText,
     required this.nextPage,
   });
@@ -15,25 +16,7 @@ class SkipButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-
-
-
-
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: 200),
-            pageBuilder: (BuildContext context, Animation<double> animation,
-                Animation<double> secondaryAnimation) {
-              return FadeTransition(
-                opacity: animation,
-                child: nextPage,
-              );
-            },
-          ),
-        );
-
-
+        Get.toNamed(nextPage);
 
         // Navigator.push(
         //   context,
@@ -41,7 +24,7 @@ class SkipButton extends StatelessWidget {
         // );
       },
       style: TextButton.styleFrom(
-        primary: Colors.transparent,
+        foregroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
       ),
       child: Text(
@@ -50,7 +33,7 @@ class SkipButton extends StatelessWidget {
           fontFamily: 'Lalezar',
           fontStyle: FontStyle.normal,
           fontWeight: FontWeight.w400,
-          fontSize: MediaQuery.of(context).size.width * 0.06,
+          fontSize: Dimension.screenWidth * 0.06,
           height: 1.5,
           color: Colors.black87,
         ),

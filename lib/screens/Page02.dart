@@ -1,14 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:warsha/routes/route_helper.dart';
 import 'package:warsha/screens/CustomButton.dart';
 
+import '../utils/dimensions.dart';
 import 'Authentification/Artisan/ScArtisan1.dart';
 import 'Authentification/Client/ScClient1.dart';
 import 'Authentification/Login/ScLogin1.dart';
 
 class Page02 extends StatefulWidget {
+  const Page02({super.key});
+
   @override
   _Page02State createState() => _Page02State();
 }
@@ -20,32 +26,31 @@ class _Page02State extends State<Page02> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFBF5F3),
+      backgroundColor: const Color(0xFFFBF5F3),
       appBar: AppBar(
-        leadingWidth: 150,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Container(
-          child: Image.asset('images/logo2.png'),
-        ),
-      ),
+          leadingWidth: Dimension.height10 * 15,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: Container(
+            margin: EdgeInsets.only(left: Dimension.height10),
+            child: SvgPicture.asset(
+              'images/logo02.svg',
+            ),
+          )),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          final screenHeight = MediaQuery.of(context).size.height;
-          final screenWidth = MediaQuery.of(context).size.width;
-
           return Stack(
             children: [
               Positioned(
-                top: screenHeight * 0.07,
+                top: Dimension.screenHeight * 0.07,
                 left: 0,
                 right: 0,
                 child: Center(
                   child: Text(
                     'من انت ؟',
                     style: TextStyle(
-                      color: Color(0xFF190B28),
-                      fontSize: screenHeight * 0.07,
+                      color: const Color(0xFF190B28),
+                      fontSize: Dimension.screenHeight * 0.07,
                       fontFamily: 'Lalezar',
                       fontWeight: FontWeight.w400,
                     ),
@@ -53,19 +58,19 @@ class _Page02State extends State<Page02> {
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.17,
+                top: Dimension.screenHeight * 0.17,
                 left: 0,
                 right: 0,
                 child: Center(
                   child: SizedBox(
-                    width: screenWidth * 0.85,
-                    height: screenHeight * 0.085,
+                    width: Dimension.screenWidth * 0.85,
+                    height: Dimension.screenHeight * 0.085,
                     child: Text(
                       'قم بإختيار ماهية حسابك في تطبيق ورشة (يمكننك الحصول على حساب مزدوج لاحقا)',
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: Color(0xFF190B28),
-                        fontSize: screenWidth * 0.04,
+                        color: const Color(0xFF190B28),
+                        fontSize: Dimension.screenWidth * 0.04,
                         fontFamily: 'Lalezar',
                         fontWeight: FontWeight.w400,
                       ),
@@ -74,13 +79,14 @@ class _Page02State extends State<Page02> {
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.3,
+                top: Dimension.screenHeight * 0.3,
                 left: 0,
                 right: 0,
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(bottom: screenHeight * 0.05),
+                      padding: EdgeInsets.only(
+                          bottom: Dimension.screenHeight * 0.05),
                       child: Row(
                         children: [
                           Expanded(
@@ -94,7 +100,7 @@ class _Page02State extends State<Page02> {
                                   selected = 1;
                                 });
                               },
-                              image: AssetImage('images/client1.png'),
+                              image: const AssetImage('images/client1.png'),
                             ),
                           ),
                           //SizedBox(width: 0.0), // Space between the buttons
@@ -109,7 +115,7 @@ class _Page02State extends State<Page02> {
                                   selected = 2;
                                 });
                               },
-                              image: AssetImage('images/artisan1.png'),
+                              image: const AssetImage('images/artisan1.png'),
                             ),
                           ),
                         ],
@@ -117,41 +123,15 @@ class _Page02State extends State<Page02> {
                     ),
                     CustomButton(
                       text: 'متابعة',
-                      fontSize: 25,
+                      fontSize: Dimension.height10 * 2.5,
                       buttonColor: (selected == 1 || selected == 2)
-                          ? Color(0xFFD56E3B)
+                          ? const Color(0xFFD56E3B)
                           : Colors.grey,
                       onPressed: () {
                         if (selected == 1) {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              transitionDuration: Duration(milliseconds: 200),
-                              pageBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secondaryAnimation) {
-                                return FadeTransition(
-                                  opacity: animation,
-                                  child: ScClient1(),
-                                );
-                              },
-                            ),
-                          );
+                          Get.toNamed(RouteHelper.getScClient1());
                         } else if (selected == 2) {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              transitionDuration: Duration(milliseconds: 200),
-                              pageBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secondaryAnimation) {
-                                return FadeTransition(
-                                  opacity: animation,
-                                  child: ScArtisan1(),
-                                );
-                              },
-                            ),
-                          );
+                          Get.toNamed(RouteHelper.getScArtisan1());
                         }
                       },
                     ),
@@ -159,32 +139,19 @@ class _Page02State extends State<Page02> {
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.65,
+                top: Dimension.screenHeight * 0.65,
                 left: 0,
                 right: 0,
                 child: Center(
                   child: SizedBox(
-                      width: screenWidth * 0.9,
+                      width: Dimension.screenWidth,
                       child: Row(
                         children: [
                           TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                PageRouteBuilder(
-                                  transitionDuration: Duration(milliseconds: 200),
-                                  pageBuilder: (BuildContext context,
-                                      Animation<double> animation,
-                                      Animation<double> secondaryAnimation) {
-                                    return FadeTransition(
-                                      opacity: animation,
-                                      child: ScLogin1(),
-                                    );
-                                  },
-                                ),
-                              );
+                              Get.toNamed(RouteHelper.getScLogin1());
                             },
-                            child: Text(
+                            child: const Text(
                               ' من هنا',
                               style: TextStyle(
                                 color: Color(0xFFD56E3B),
@@ -198,57 +165,56 @@ class _Page02State extends State<Page02> {
                             'لديك حساب بالفعل؟ قم بتسجيل دخولك',
                             style: TextStyle(
                               color: Color(0xFF190B28),
-                              fontSize: 21,
+                              fontSize: Dimension.height10 * 2.1,
                               fontFamily: 'Lalezar',
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-
                         ],
                       )),
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.83,
+                top: Dimension.screenHeight * 0.83,
                 left: 0,
                 right: 0,
                 child: Container(
-                  width: screenWidth,
+                  width: Dimension.screenWidth,
                   child: LinearPercentIndicator(
-                    width: screenWidth * 0.98,
-                    lineHeight: screenHeight * 0.01,
+                    width: Dimension.screenWidth * 0.98,
+                    lineHeight: Dimension.screenHeight * 0.01,
                     percent: 0.25,
                     barRadius: const Radius.circular(20),
-                    backgroundColor: Color(0xFFE9E5E4),
-                    progressColor: Color(0xFFD56E3B),
+                    backgroundColor: const Color(0xFFE9E5E4),
+                    progressColor: const Color(0xFFD56E3B),
                   ),
                 ),
               ),
               Positioned(
-                left: screenWidth * 0.035,
-                top: screenHeight * 0.85,
+                left: Dimension.screenWidth * 0.035,
+                top: Dimension.screenHeight * 0.85,
                 child: Text(
                   'تحديد الحساب',
                   textAlign: TextAlign.right,
                   style: TextStyle(
-                    color: Color(0xFF190B28),
-                    fontSize: screenWidth * 0.035,
+                    color: const Color(0xFF190B28),
+                    fontSize: Dimension.screenWidth * 0.035,
                     fontFamily: 'Lalezar',
                     fontWeight: FontWeight.w400,
                   ),
                 ),
               ),
               Positioned(
-                left: screenWidth * 0.25,
-                top: screenHeight * 0.85,
+                left: Dimension.screenWidth * 0.25,
+                top: Dimension.screenHeight * 0.85,
                 child: Opacity(
                   opacity: 0.50,
                   child: Text(
                     'المعلومات الشخصية',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: Color(0xFF190B28),
-                      fontSize: screenWidth * 0.035,
+                      color: const Color(0xFF190B28),
+                      fontSize: Dimension.screenWidth * 0.035,
                       fontFamily: 'Lalezar',
                       fontWeight: FontWeight.w400,
                     ),
@@ -256,16 +222,16 @@ class _Page02State extends State<Page02> {
                 ),
               ),
               Positioned(
-                left: screenWidth * 0.53,
-                top: screenHeight * 0.85,
+                left: Dimension.screenWidth * 0.53,
+                top: Dimension.screenHeight * 0.85,
                 child: Opacity(
                   opacity: 0.50,
                   child: Text(
                     'اختيار الحرفة',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: Color(0xFF190B28),
-                      fontSize: screenWidth * 0.035,
+                      color: const Color(0xFF190B28),
+                      fontSize: Dimension.screenWidth * 0.035,
                       fontFamily: 'Lalezar',
                       fontWeight: FontWeight.w400,
                     ),
@@ -273,16 +239,16 @@ class _Page02State extends State<Page02> {
                 ),
               ),
               Positioned(
-                left: screenWidth * 0.71,
-                top: screenHeight * 0.85,
+                left: Dimension.screenWidth * 0.71,
+                top: Dimension.screenHeight * 0.85,
                 child: Opacity(
                   opacity: 0.50,
                   child: Text(
                     'تأكييد رقم/البريد',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: Color(0xFF190B28),
-                      fontSize: screenWidth * 0.035,
+                      color: const Color(0xFF190B28),
+                      fontSize: Dimension.screenWidth * 0.035,
                       fontFamily: 'Lalezar',
                       fontWeight: FontWeight.w400,
                     ),
@@ -314,24 +280,24 @@ class SelectBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return Container(
-      width: 157,
-      height: 157,
-      margin: EdgeInsets.only(right: 30, left: 30),
+      width: Dimension.height10 * 15.7,
+      height: Dimension.height10 * 15.7,
+      margin: EdgeInsets.only(
+          right: Dimension.height10 * 3, left: Dimension.height10 * 3),
       decoration: ShapeDecoration(
-        color: Color(0xFFE9E5E4),
+        color: const Color(0xFFE9E5E4),
         shape: RoundedRectangleBorder(
           side: BorderSide(
               width: 5,
-              color:
-                  (selected == index) ? Color(0xFFD56E3B) : Colors.transparent),
-          borderRadius: BorderRadius.circular(32),
+              color: (selected == index)
+                  ? const Color(0xFFD56E3B)
+                  : Colors.transparent),
+          borderRadius: BorderRadius.circular(Dimension.height10 * 3.2),
         ),
         shadows: [
           if (selected == index)
-            BoxShadow(
+            const BoxShadow(
               color: Color(0xB2D56E3B),
               blurRadius: 24,
               offset: Offset(0, 0),
@@ -344,9 +310,9 @@ class SelectBtn extends StatelessWidget {
         style: OutlinedButton.styleFrom(
           padding: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(screenWidth * 0.024),
+            borderRadius: BorderRadius.circular(Dimension.screenWidth * 0.024),
           ),
-          side: BorderSide(
+          side: const BorderSide(
             color: Colors.transparent,
           ),
         ),
@@ -355,14 +321,15 @@ class SelectBtn extends StatelessWidget {
           children: [
             Image(
                 image: image,
-                width: screenWidth * 0.24,
-                height: screenWidth * 0.24),
-            SizedBox(height: screenWidth * 0.016),
+                width: Dimension.screenWidth * 0.24,
+                height: Dimension.screenWidth * 0.24),
+            SizedBox(height: Dimension.screenWidth * 0.016),
             Text(
               text,
               style: TextStyle(
-                color: (selected == index) ? Color(0xFFD56E3B) : Colors.grey,
-                fontSize: screenWidth * 0.05,
+                color:
+                    (selected == index) ? const Color(0xFFD56E3B) : Colors.grey,
+                fontSize: Dimension.screenWidth * 0.05,
                 fontFamily: 'Lalezar',
                 fontWeight: FontWeight.w400,
               ),

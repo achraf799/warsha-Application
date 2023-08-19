@@ -1,9 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:warsha/routes/route_helper.dart';
 import 'package:warsha/screens/CustomButton.dart';
 
+import '../../../utils/dimensions.dart';
 import '../../Page02.dart';
 import '../../SelectedList.dart';
 import '../../WarshaIntro/SkipButton.dart';
@@ -17,13 +21,55 @@ class ScClient1 extends StatefulWidget {
 
 class _ScClient1State extends State<ScClient1> {
   int selected = 0;
-  final items = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر',];
-  final items1 = [
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
-    '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'
+  final items = [
+    'يناير',
+    'فبراير',
+    'مارس',
+    'أبريل',
+    'مايو',
+    'يونيو',
+    'يوليو',
+    'أغسطس',
+    'سبتمبر',
+    'أكتوبر',
+    'نوفمبر',
+    'ديسمبر',
   ];
-  String selectedDay='يوم';
-  String selectedMonth='شهر';
+  final items1 = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
+    '21',
+    '22',
+    '23',
+    '24',
+    '25',
+    '26',
+    '27',
+    '28',
+    '29',
+    '30',
+    '31'
+  ];
+  String selectedDay = 'يوم';
+  String selectedMonth = 'شهر';
   final _controller = PageController();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _yearController = TextEditingController();
@@ -35,32 +81,31 @@ class _ScClient1State extends State<ScClient1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFBF5F3),
+      backgroundColor: const Color(0xFFFBF5F3),
       appBar: AppBar(
-        leadingWidth: 150,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Container(
-          child: Image.asset('images/logo2.png'),
-        ),
-      ),
+          leadingWidth: Dimension.height10 * 15,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: Container(
+            margin: EdgeInsets.only(left: Dimension.height10),
+            child: SvgPicture.asset(
+              'images/logo02.svg',
+            ),
+          )),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          final screenHeight = MediaQuery.of(context).size.height;
-          final screenWidth = MediaQuery.of(context).size.width;
-
           return Stack(
             children: [
               Positioned(
-                top: screenHeight * 0.07,
+                top: Dimension.screenHeight * 0.07,
                 left: 0,
                 right: 0,
                 child: Center(
                   child: Text(
                     'قم بملئ معلوماتك الشخصية',
                     style: TextStyle(
-                      color: Color(0xFF190B28),
-                      fontSize: 30.48,
+                      color: const Color(0xFF190B28),
+                      fontSize: Dimension.height10 * 3.048,
                       fontFamily: 'Lalezar',
                       fontWeight: FontWeight.w400,
                     ),
@@ -68,13 +113,13 @@ class _ScClient1State extends State<ScClient1> {
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.17,
+                top: Dimension.screenHeight * 0.17,
                 left: 0,
                 right: 0,
                 child: Center(
                   child: SizedBox(
-                    width: 338,
-                    height: 49,
+                    width: Dimension.height10 * 33.8,
+                    height: Dimension.height10 * 4.9,
                     child: Opacity(
                       opacity: 0.80,
                       child: Row(
@@ -85,8 +130,8 @@ class _ScClient1State extends State<ScClient1> {
                             child: Text(
                               'املأ المعلومات باللغة الفرنسية حتى لا تحدث أيّة مشاكل في مرحلة التسجيل',
                               style: TextStyle(
-                                color: Color(0xFF190B28),
-                                fontSize: 16,
+                                color: const Color(0xFF190B28),
+                                fontSize: Dimension.height10 * 1.6,
                                 fontFamily: 'Lalezar',
                                 fontWeight: FontWeight.w400,
                               ),
@@ -94,11 +139,11 @@ class _ScClient1State extends State<ScClient1> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(right: 0, top: 0),
+                            padding: const EdgeInsets.only(right: 0, top: 0),
                             child: Icon(
                               Icons.star,
                               color: Colors.red,
-                              size: 16,
+                              size: Dimension.height10 * 1.6,
                             ),
                           ),
                         ],
@@ -108,11 +153,11 @@ class _ScClient1State extends State<ScClient1> {
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.22,
+                top: Dimension.screenHeight * 0.22,
                 left: 0,
                 right: 0,
                 child: Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: EdgeInsets.all(Dimension.height10 * 1.5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -137,65 +182,67 @@ class _ScClient1State extends State<ScClient1> {
                         icon: Icons.male,
                       ),
                       Container(
-                        width: 300,
-                        height: 48,
+                        width: Dimension.height10 * 22.0,
+                        height: Dimension.height10 * 4.8,
                         child: TextField(
                           controller: _nameController,
                           decoration: InputDecoration(
                             hintText: 'الإسم الكامل',
                             hintStyle: TextStyle(
                               color: Colors.black38,
-                              fontSize: 22.48,
+                              fontSize: Dimension.height10 * 2.248,
                               fontFamily: 'Lalezar',
                               fontWeight: FontWeight.w400,
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(22.5),
+                                Radius.circular(Dimension.height10 * 2.25),
                               ),
                               borderSide: BorderSide.none,
                             ),
                             filled: true,
-                            fillColor: Color(0xFFE9E5E4),
-                            contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                            suffixIcon: Icon(
+                            fillColor: const Color(0xFFE9E5E4),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: Dimension.height10,
+                                horizontal: Dimension.height10),
+                            suffixIcon: const Icon(
                               Icons.person,
                               color: Colors.black38,
                             ),
                           ),
                           textAlign: TextAlign.right,
                         ),
-
                       ),
                     ],
                   ),
                 ),
               ),
               Positioned(
-                left: 320,
+                left: Dimension.height10 * 25,
                 right: 0,
-                top: screenHeight * 0.31,
+                top: Dimension.screenHeight * 0.31,
                 child: Text(
                   'تاريخ الميلاد',
                   style: TextStyle(
                     color: Colors.black38,
-                    fontSize: 22.48,
+                    fontSize: Dimension.height10 * 2.248,
                     fontFamily: 'Lalezar',
                     fontWeight: FontWeight.w400,
                   ),
                 ),
               ),
               Positioned(
-                left: 320,
+                left: Dimension.height10 * 25,
                 right: 0,
-                top: screenHeight * 0.36,
+                top: Dimension.screenHeight * 0.36,
                 child: Center(
                   child: Container(
-                    width: 180,
+                    width: Dimension.height10 * 18,
                     decoration: ShapeDecoration(
-                      color: Color(0xFFE9E5E4),
+                      color: const Color(0xFFE9E5E4),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(22.50),
+                        borderRadius:
+                            BorderRadius.circular(Dimension.height10 * 2.25),
                       ),
                     ),
                     child: Center(
@@ -204,7 +251,7 @@ class _ScClient1State extends State<ScClient1> {
                           selectedDay != null ? selectedDay : 'يوم',
                           style: TextStyle(
                             color: Colors.black38,
-                            fontSize: 22.48,
+                            fontSize: Dimension.height10 * 2.248,
                             fontFamily: 'Lalezar',
                             fontWeight: FontWeight.w400,
                           ),
@@ -217,10 +264,10 @@ class _ScClient1State extends State<ScClient1> {
                         },
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 18.0,
+                          fontSize: Dimension.height10 * 1.8,
                         ),
-                        dropdownColor: Color(0xFFE9E5E4),
-                        icon: Icon(
+                        dropdownColor: const Color(0xFFE9E5E4),
+                        icon: const Icon(
                           Icons.arrow_drop_down,
                           color: Colors.black,
                         ),
@@ -229,18 +276,18 @@ class _ScClient1State extends State<ScClient1> {
                   ),
                 ),
               ),
-
               Positioned(
-                left: 30,
+                left: 0,
                 right: 0,
-                top: screenHeight * 0.36,
+                top: Dimension.screenHeight * 0.36,
                 child: Center(
                   child: Container(
-                    width: 130,
+                    width: Dimension.height10 * 13,
                     decoration: ShapeDecoration(
-                      color: Color(0xFFE9E5E4),
+                      color: const Color(0xFFE9E5E4),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(22.50),
+                        borderRadius:
+                            BorderRadius.circular(Dimension.height10 * 2.25),
                       ),
                     ),
                     child: Center(
@@ -249,7 +296,7 @@ class _ScClient1State extends State<ScClient1> {
                           selectedMonth != null ? selectedMonth : 'شهر',
                           style: TextStyle(
                             color: Colors.black38,
-                            fontSize: 22.48,
+                            fontSize: Dimension.height10 * 2.248,
                             fontFamily: 'Lalezar',
                             fontWeight: FontWeight.w400,
                           ),
@@ -266,31 +313,33 @@ class _ScClient1State extends State<ScClient1> {
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.36,
-                right: 300,
-                child:Center(
+                top: Dimension.screenHeight * 0.36,
+                right: Dimension.height10 * 25.5,
+                child: Center(
                   child: Container(
-                    width: 80,
-                    height: 48,
+                    width: Dimension.screenHeight * 8,
+                    height: Dimension.screenHeight * 4.8,
                     child: TextField(
                       controller: _yearController,
                       decoration: InputDecoration(
                         hintText: 'عام',
                         hintStyle: TextStyle(
                           color: Colors.black38,
-                          fontSize: 22.48,
+                          fontSize: Dimension.screenHeight * 2.248,
                           fontFamily: 'Lalezar',
                           fontWeight: FontWeight.w400,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(22.5),
+                            Radius.circular(Dimension.screenHeight * 2.25),
                           ),
                           borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: Color(0xFFE9E5E4),
-                        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                        fillColor: const Color(0xFFE9E5E4),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: Dimension.height10,
+                            horizontal: Dimension.height10),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -298,90 +347,92 @@ class _ScClient1State extends State<ScClient1> {
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.435,
+                top: Dimension.screenHeight * 0.44,
                 right: 0,
                 left: 0,
                 child: Center(
                   child: Container(
-                    width: 400,
-                    height: 48,
+                    width: Dimension.height10 * 32,
+                    height: Dimension.height10 * 24.8,
                     child: TextField(
                       controller: _mailController,
                       decoration: InputDecoration(
                         hintText: 'البريد الالكتروني',
                         hintStyle: TextStyle(
                           color: Colors.black38,
-                          fontSize: 22.48,
+                          fontSize: Dimension.height10 * 2.248,
                           fontFamily: 'Lalezar',
                           fontWeight: FontWeight.w400,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(22.5),
+                            Radius.circular(Dimension.height10 * 22.25),
                           ),
                           borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: Color(0xFFE9E5E4),
-                        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                        suffixIcon: Icon(
+                        fillColor: const Color(0xFFE9E5E4),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: Dimension.height10,
+                            horizontal: Dimension.height10),
+                        suffixIcon: const Icon(
                           Icons.mail,
                           color: Colors.black38,
                         ),
                       ),
                       textAlign: TextAlign.right,
                     ),
-
                   ),
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.515,
+                top: Dimension.screenHeight * 0.520,
                 right: 0,
                 left: 0,
                 child: Center(
                   child: Container(
-                    width: 400,
-                    height: 48,
+                    width: Dimension.height10 * 32,
+                    height: Dimension.height10 * 4.8,
                     child: TextField(
                       controller: _phoneController,
                       decoration: InputDecoration(
                         hintText: 'رقم الهاتف',
                         hintStyle: TextStyle(
                           color: Colors.black38,
-                          fontSize: 22.48,
+                          fontSize: Dimension.height10 * 2.248,
                           fontFamily: 'Lalezar',
                           fontWeight: FontWeight.w400,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(22.5),
+                            Radius.circular(Dimension.height10 * 2.25),
                           ),
                           borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: Color(0xFFE9E5E4),
-                        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                        suffixIcon: Icon(
+                        fillColor: const Color(0xFFE9E5E4),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: Dimension.height10,
+                            horizontal: Dimension.height10),
+                        suffixIcon: const Icon(
                           Icons.phone_enabled,
                           color: Colors.black38,
                         ),
                       ),
                       textAlign: TextAlign.right,
                     ),
-
                   ),
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.63,
+                top: Dimension.screenHeight * 0.63,
                 left: 0,
                 right: 0,
                 child: Center(
                   child: CustomButton(
                     text: 'متابعة',
-                    fontSize: 25,
-                    buttonColor: Color(0xFFD56E3B),
+                    fontSize: Dimension.height10 * 2.5,
+                    buttonColor: const Color(0xFFD56E3B),
                     onPressed: () {
                       FirebaseAuth.instance
                           .createUserWithEmailAndPassword(
@@ -390,19 +441,7 @@ class _ScClient1State extends State<ScClient1> {
                       )
                           .then((userCredential) {
                         // Account creation successful, navigate to the new screen
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            transitionDuration: Duration(milliseconds: 200),
-                            pageBuilder: (BuildContext context, Animation<double> animation,
-                                Animation<double> secondaryAnimation) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: ScClient2(), // Replace with the screen you want to navigate to
-                              );
-                            },
-                          ),
-                        );
+                        Get.toNamed(RouteHelper.getScClient2());
                       }).catchError((error) {
                         // Account creation failed, handle the error
                         print("Error creating account: $error");
@@ -412,45 +451,44 @@ class _ScClient1State extends State<ScClient1> {
                   ),
                 ),
               ),
-
               Positioned(
-                top: screenHeight * 0.71,
+                top: Dimension.screenHeight * 0.71,
                 left: 0,
                 right: 0,
                 child: Center(
                   child: SkipButton(
                     buttonText: 'الغاء',
-                    nextPage: Page02(),
+                    nextPage: RouteHelper.getPage02(),
                   ),
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.83,
+                top: Dimension.screenHeight * 0.83,
                 left: 0,
                 right: 0,
                 child: Container(
-                  width: screenWidth,
+                  width: Dimension.screenWidth,
                   child: LinearPercentIndicator(
-                    width: screenWidth * 0.98,
-                    lineHeight: screenHeight * 0.01,
+                    width: Dimension.screenWidth * 0.98,
+                    lineHeight: Dimension.screenHeight * 0.01,
                     percent: 0.3,
                     barRadius: const Radius.circular(20),
-                    backgroundColor: Color(0xFFE9E5E4),
-                    progressColor: Color(0xFFD56E3B),
+                    backgroundColor: const Color(0xFFE9E5E4),
+                    progressColor: const Color(0xFFD56E3B),
                   ),
                 ),
               ),
               Positioned(
-                left: screenWidth * 0.035,
-                top: screenHeight * 0.85,
+                left: Dimension.screenWidth * 0.035,
+                top: Dimension.screenHeight * 0.85,
                 child: Opacity(
                   opacity: 0.5,
                   child: Text(
                     'تحديد الحساب',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: Color(0xFF190B28),
-                      fontSize: screenWidth * 0.035,
+                      color: const Color(0xFF190B28),
+                      fontSize: Dimension.screenWidth * 0.035,
                       fontFamily: 'Lalezar',
                       fontWeight: FontWeight.w400,
                     ),
@@ -458,16 +496,16 @@ class _ScClient1State extends State<ScClient1> {
                 ),
               ),
               Positioned(
-                left: screenWidth * 0.225,
-                top: screenHeight * 0.85,
+                left: Dimension.screenWidth * 0.225,
+                top: Dimension.screenHeight * 0.85,
                 child: Opacity(
                   opacity: 1,
                   child: Text(
                     'المعلومات الشخصية',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: Color(0xFF190B28),
-                      fontSize: 14,
+                      color: const Color(0xFF190B28),
+                      fontSize: Dimension.height10 * 1.4,
                       fontFamily: 'Lalezar',
                       fontWeight: FontWeight.w400,
                     ),
@@ -475,16 +513,16 @@ class _ScClient1State extends State<ScClient1> {
                 ),
               ),
               Positioned(
-                left: screenWidth * 0.45,
-                top: screenHeight * 0.85,
+                left: Dimension.screenWidth * 0.45,
+                top: Dimension.screenHeight * 0.85,
                 child: Opacity(
                   opacity: 0.5,
                   child: Text(
                     'كلمـــــــة الـــــسر',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: Color(0xFF190B28),
-                      fontSize: 16,
+                      color: const Color(0xFF190B28),
+                      fontSize: Dimension.height10 * 1.6,
                       fontFamily: 'Lalezar',
                       fontWeight: FontWeight.w400,
                     ),
@@ -492,16 +530,16 @@ class _ScClient1State extends State<ScClient1> {
                 ),
               ),
               Positioned(
-                left: screenWidth * 0.71,
-                top: screenHeight * 0.85,
+                left: Dimension.screenWidth * 0.71,
+                top: Dimension.screenHeight * 0.85,
                 child: Opacity(
                   opacity: 0.5,
                   child: Text(
                     'تأكيد رقم الهاتف',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: Color(0xFF190B28),
-                      fontSize: screenWidth * 0.035,
+                      color: const Color(0xFF190B28),
+                      fontSize: Dimension.screenWidth * 0.035,
                       fontFamily: 'Lalezar',
                       fontWeight: FontWeight.w400,
                     ),
@@ -514,18 +552,19 @@ class _ScClient1State extends State<ScClient1> {
       ),
     );
   }
+
   DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
-    value: item,
-    child: Text(
-      item,
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 22.48,
-        fontFamily: 'Lalezar',
-        fontWeight: FontWeight.w400,
-      ),
-    ),
-  );
+        value: item,
+        child: Text(
+          item,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: Dimension.height10 * 2.248,
+            fontFamily: 'Lalezar',
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      );
 }
 
 class SelectBtn extends StatelessWidget {
@@ -543,8 +582,6 @@ class SelectBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
     Color getBorderColor() {
       if (selected == 2 && selected == index) {
         return Colors.blue;
@@ -554,6 +591,7 @@ class SelectBtn extends StatelessWidget {
         return Colors.transparent;
       }
     }
+
     Color getColor() {
       if (selected == 2 && selected == index) {
         return Colors.blue;
@@ -565,28 +603,28 @@ class SelectBtn extends StatelessWidget {
     }
 
     return Container(
-      width: 38,
-      height: 48,
-      margin: EdgeInsets.only(right: 5, left: 5),
+      width: Dimension.height10 * 3.8,
+      height: Dimension.height10 * 4.8,
+      margin: const EdgeInsets.only(right: 5, left: 5),
       decoration: ShapeDecoration(
-        color: Color(0xFFE9E5E4),
+        color: const Color(0xFFE9E5E4),
         shape: RoundedRectangleBorder(
           side: BorderSide(
             width: 3,
             color: getBorderColor(),
           ),
-          borderRadius: BorderRadius.circular(22.5),
+          borderRadius: BorderRadius.circular(Dimension.height10 * 2.25),
         ),
         shadows: [
           if (selected == 2 && selected == index)
-            BoxShadow(
+            const BoxShadow(
               color: Colors.blue,
               blurRadius: 24,
               offset: Offset(0, 0),
               spreadRadius: 0,
             ),
           if (selected == 1 && selected == index)
-            BoxShadow(
+            const BoxShadow(
               color: Colors.pinkAccent,
               blurRadius: 24,
               offset: Offset(0, 0),
@@ -599,7 +637,7 @@ class SelectBtn extends StatelessWidget {
         style: OutlinedButton.styleFrom(
           padding: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(screenWidth * 0.024),
+            borderRadius: BorderRadius.circular(Dimension.screenWidth * 0.024),
             side: BorderSide(
               color: getBorderColor(),
             ),
@@ -610,8 +648,8 @@ class SelectBtn extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color:  getColor(),
-              size: screenWidth * 0.07,
+              color: getColor(),
+              size: Dimension.screenWidth * 0.07,
             ),
           ],
         ),

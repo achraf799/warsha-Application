@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:warsha/utils/dimensions.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -8,6 +8,7 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const CustomButton({
+    super.key,
     required this.text,
     required this.fontSize,
     required this.buttonColor,
@@ -19,19 +20,19 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.4,
-        height: MediaQuery.of(context).size.height * 0.065,
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        width: Dimension.screenWidth * 0.5,
+        height: Dimension.screenHeight * 0.065,
+        padding: EdgeInsets.symmetric(horizontal: Dimension.height10 * 1.5),
         decoration: BoxDecoration(
           color: buttonColor,
           boxShadow: [
             BoxShadow(
-              offset: Offset(-2, 0),
+              offset: const Offset(-2, 0),
               blurRadius: 24,
               color: buttonColor,
             ),
           ],
-          borderRadius: BorderRadius.circular(24.5),
+          borderRadius: BorderRadius.circular(Dimension.height10 * 2.45),
         ),
         child: Center(
           child: Text(
