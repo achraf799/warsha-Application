@@ -1,9 +1,13 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:warsha/data/controllers/auth_controller.dart';
 import 'package:warsha/screens/CustomButton.dart';
 import 'package:warsha/utils/dimensions.dart';
+import '../../../utils/show_custom_snackbar.dart';
 import '../../Page02.dart';
 import '../../WarshaIntro/SkipButton.dart';
 import 'ScNopswrd.dart';
@@ -18,6 +22,34 @@ class _ScLogin1State extends State<ScLogin1> {
   TextEditingController _phoneController = TextEditingController();
   bool _obscureText = true;
   final _controller = PageController();
+
+  void _login() async {
+    final connectivityResult = await Connectivity().checkConnectivity();
+    if (connectivityResult == ConnectivityResult.none) {
+      showCustomSnackBar("Connection problem", title: "No internet connection");
+    } else {
+      String password = _pswrdController.text.trim();
+      String phone = _phoneController.text.trim();
+
+      if (phone.isEmpty) {
+        showCustomSnackBar("Type in your email address",
+            title: "Email address");
+      } else if (password.isEmpty) {
+        showCustomSnackBar("Type in your password", title: "Password");
+      } else if (password.length < 6) {
+        showCustomSnackBar("Password can not be less than six chacarcters",
+            title: "Password");
+      } else {
+        Get.find<AuthController>().login(phone, password).then((status) {
+          if (status) {
+            print("logged in successfully");
+          } else {
+            showCustomSnackBar("Wrong credentials");
+          }
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -275,20 +307,7 @@ class _ScLogin1State extends State<ScLogin1> {
                     fontSize: Dimension.height10 * 2.5,
                     buttonColor: const Color(0xFFD56E3B),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                          transitionDuration: const Duration(milliseconds: 200),
-                          pageBuilder: (BuildContext context,
-                              Animation<double> animation,
-                              Animation<double> secondaryAnimation) {
-                            return FadeTransition(
-                              opacity: animation,
-                              //child: ScClient4(),
-                            );
-                          },
-                        ),
-                      );
+                      _login();
                     },
                   ),
                 ),

@@ -1,13 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:warsha/data/controllers/auth_controller.dart';
 import 'package:warsha/routes/route_helper.dart';
 import 'package:warsha/screens/CustomButton.dart';
 
 import '../../../utils/dimensions.dart';
+import '../../../utils/show_custom_snackbar.dart';
 import '../../Page02.dart';
 import '../../SelectedList.dart';
 import '../../WarshaIntro/SkipButton.dart';
@@ -77,6 +78,60 @@ class _ScClient1State extends State<ScClient1> {
   TextEditingController _phoneController = TextEditingController();
   final _textController = TextEditingController();
   String username = '';
+  String sexe = "";
+
+  void _registration() async {
+    final connectivityResult = await Connectivity().checkConnectivity();
+    if (connectivityResult == ConnectivityResult.none) {
+      showCustomSnackBar("Connection problem", title: "No internet connection");
+    } else {
+      String name = _nameController.text.trim();
+      String email = _mailController.text.trim();
+      String phone = _phoneController.text.trim();
+      String year = _yearController.text.trim();
+      int month = 0;
+
+      if (name.isEmpty) {
+        showCustomSnackBar("Type in your name", title: "Name");
+      } else if (sexe.isEmpty) {
+        showCustomSnackBar("Select your sexe", title: "Sexe");
+      } else if (selectedDay == 'يوم') {
+        showCustomSnackBar("Select your birth day", title: "Day");
+      } else if (selectedMonth == 'شهر') {
+        showCustomSnackBar("Select your birth month", title: "Month");
+      } else if (year.isEmpty) {
+        showCustomSnackBar("Type in your birth year", title: "Year");
+      } else if (int.tryParse(year) == null) {
+        showCustomSnackBar("Enter a valid year", title: "Year");
+      } else if (int.parse(year) > DateTime.now().year) {
+        showCustomSnackBar("Enter a valid year", title: "Year");
+      } else if (email.isEmpty) {
+        showCustomSnackBar("Type in your email address",
+            title: "Email address");
+      } else if (!GetUtils.isEmail(email)) {
+        showCustomSnackBar("Type in a valid email address",
+            title: "Valid email address");
+      } else if (phone.isEmpty) {
+        showCustomSnackBar("Type in your phone number", title: "Phone number");
+      } else {
+        for (var i = 0; i < items.length; i++) {
+          if (items[i] == selectedMonth) {
+            month = i + 1;
+          }
+        }
+        print(DateTime(int.parse(year), month, int.parse(selectedDay)));
+        /* Get.find<AuthController>().register(name, email, phone).then((status) {
+          if (status) {
+            Get.put(ConversationController(conversationRepo: Get.find()));
+            print("Success registration");
+            Get.toNamed(RouteHelper.getHomePage());
+          } else {
+            showCustomSnackBar("Already registered");
+          }
+        });*/
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,6 +222,7 @@ class _ScClient1State extends State<ScClient1> {
                         onPressed: () {
                           setState(() {
                             selected = 1;
+                            sexe = "Female";
                           });
                         },
                         icon: Icons.female,
@@ -177,6 +233,7 @@ class _ScClient1State extends State<ScClient1> {
                         onPressed: () {
                           setState(() {
                             selected = 2;
+                            sexe = "Male";
                           });
                         },
                         icon: Icons.male,
@@ -248,7 +305,7 @@ class _ScClient1State extends State<ScClient1> {
                     child: Center(
                       child: DropdownButton<String>(
                         hint: Text(
-                          selectedDay != null ? selectedDay : 'يوم',
+                          selectedDay,
                           style: TextStyle(
                             color: Colors.black38,
                             fontSize: Dimension.height10 * 2.248,
@@ -293,7 +350,7 @@ class _ScClient1State extends State<ScClient1> {
                     child: Center(
                       child: DropdownButton<String>(
                         hint: Text(
-                          selectedMonth != null ? selectedMonth : 'شهر',
+                          selectedMonth,
                           style: TextStyle(
                             color: Colors.black38,
                             fontSize: Dimension.height10 * 2.248,
@@ -317,15 +374,15 @@ class _ScClient1State extends State<ScClient1> {
                 right: Dimension.height10 * 25.5,
                 child: Center(
                   child: Container(
-                    width: Dimension.screenHeight * 8,
-                    height: Dimension.screenHeight * 4.8,
+                    width: Dimension.height10 * 8,
+                    height: Dimension.height10 * 4.8,
                     child: TextField(
                       controller: _yearController,
                       decoration: InputDecoration(
                         hintText: 'عام',
                         hintStyle: TextStyle(
                           color: Colors.black38,
-                          fontSize: Dimension.screenHeight * 2.248,
+                          fontSize: Dimension.height10 * 2.248,
                           fontFamily: 'Lalezar',
                           fontWeight: FontWeight.w400,
                         ),
@@ -434,19 +491,8 @@ class _ScClient1State extends State<ScClient1> {
                     fontSize: Dimension.height10 * 2.5,
                     buttonColor: const Color(0xFFD56E3B),
                     onPressed: () {
-                      FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                        email: _mailController.text,
-                        password: _phoneController.text,
-                      )
-                          .then((userCredential) {
-                        // Account creation successful, navigate to the new screen
-                        Get.toNamed(RouteHelper.getScClient2());
-                      }).catchError((error) {
-                        // Account creation failed, handle the error
-                        print("Error creating account: $error");
-                        // You can display an error message to the user here if needed.
-                      });
+                      _registration();
+                      //Registration here<<<<<
                     },
                   ),
                 ),

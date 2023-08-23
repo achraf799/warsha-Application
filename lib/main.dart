@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warsha/routes/route_helper.dart';
 import 'package:warsha/screens/SplashScreen.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:warsha/data/dependencies/dependencies.dart' as dep;
 // import 'screens/auth_wrapper.dart'; // Import the AuthWrapper widget
 
-import 'screens/Page02.dart';
-
 void main() async {
-  // Initialize Firebase (required for using Firebase services)
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+
+  await dep.init();
 
   runApp(WarshaApp());
 }
