@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:warsha/data/controllers/auth_controller.dart';
 import 'package:warsha/routes/route_helper.dart';
 import 'package:warsha/screens/CustomButton.dart';
 
 import '../utils/dimensions.dart';
-import 'Authentification/Artisan/ScArtisan1.dart';
-import 'Authentification/Client/ScClient1.dart';
 import 'Authentification/Login/ScLogin1.dart';
 
 class Page02 extends StatefulWidget {
@@ -98,6 +97,7 @@ class _Page02State extends State<Page02> {
                               onPressed: () {
                                 setState(() {
                                   selected = 1;
+                                  Get.find<AuthController>().setIsClient = true;
                                 });
                               },
                               image: const AssetImage('images/client1.png'),
@@ -113,6 +113,8 @@ class _Page02State extends State<Page02> {
                               onPressed: () {
                                 setState(() {
                                   selected = 2;
+                                  Get.find<AuthController>().setIsClient =
+                                      false;
                                 });
                               },
                               image: const AssetImage('images/artisan1.png'),
@@ -128,10 +130,8 @@ class _Page02State extends State<Page02> {
                           ? const Color(0xFFD56E3B)
                           : Colors.grey,
                       onPressed: () {
-                        if (selected == 1) {
-                          Get.toNamed(RouteHelper.getScClient1());
-                        } else if (selected == 2) {
-                          Get.toNamed(RouteHelper.getScArtisan1());
+                        if (selected != 0) {
+                          Get.toNamed(RouteHelper.getSignUpPage1());
                         }
                       },
                     ),

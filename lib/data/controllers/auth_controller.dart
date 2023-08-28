@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:warsha/data/models/user_model.dart';
 import 'package:warsha/data/repos/auth_repo.dart';
 
 class AuthController extends GetxController {
@@ -6,6 +7,19 @@ class AuthController extends GetxController {
 
   //controller vars
   bool _isLoading = false;
+  bool _isClient = true;
+  UserModel? _regUser;
+
+  //setters and getters
+  bool get isClient => _isClient;
+  set setIsClient(bool boolean) {
+    _isClient = boolean;
+  }
+
+  UserModel? get regUser => _regUser;
+  set setRegUser(UserModel usr) {
+    _regUser = usr;
+  }
 
   AuthController({required this.authRepo});
 

@@ -110,7 +110,6 @@ class _HomePageState extends State<HomePage> {
                 text: 'متابعة',
                 fontSize: Dimension.screenWidth * 0.06,
                 onPressed: () {
-                  print("pressed");
                   Get.offAndToNamed(RouteHelper.getPage01());
                 },
                 buttonColor: const Color(0xFFD56E3B),

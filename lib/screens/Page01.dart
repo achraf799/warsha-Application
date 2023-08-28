@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:warsha/data/controllers/auth_controller.dart';
 import 'package:warsha/routes/route_helper.dart';
 import 'package:warsha/utils/dimensions.dart';
 import 'Page02.dart';
@@ -51,6 +52,9 @@ class Page01 extends StatelessWidget {
                 SkipButton(
                   buttonText: 'تخطي',
                   nextPage: RouteHelper.getPage02(),
+                  onTap: () {
+                    Get.put(AuthController(authRepo: Get.find()));
+                  },
                 ),
                 SizedBox(width: Dimension.screenWidth * 0.02),
                 ElevatedButton(
@@ -62,6 +66,7 @@ class Page01 extends StatelessWidget {
                       );
                     } else {
                       Get.toNamed(RouteHelper.getPage02());
+                      Get.put(AuthController(authRepo: Get.find()));
                     }
                   },
                   style: ElevatedButton.styleFrom(

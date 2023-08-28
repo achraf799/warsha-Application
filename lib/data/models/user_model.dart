@@ -10,15 +10,15 @@ class UserModel {
   bool? isClient;
 
   UserModel({
-    required this.userId,
-    required this.name,
-    required this.email,
-    required this.password,
-    required this.phone,
-    required this.birthDate,
-    required this.city,
-    required this.sexe,
-    required this.isClient,
+    this.userId,
+    this.name,
+    this.email,
+    this.password,
+    this.phone,
+    this.birthDate,
+    this.city,
+    this.sexe,
+    this.isClient,
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {

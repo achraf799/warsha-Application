@@ -5,18 +5,20 @@ import 'package:warsha/utils/dimensions.dart';
 class SkipButton extends StatelessWidget {
   final String buttonText;
   final String nextPage;
+  final Function()? onTap;
 
-  const SkipButton({
-    super.key,
-    required this.buttonText,
-    required this.nextPage,
-  });
+  const SkipButton(
+      {super.key,
+      required this.buttonText,
+      required this.nextPage,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
         Get.toNamed(nextPage);
+        onTap == null ? () {} : onTap!();
 
         // Navigator.push(
         //   context,
