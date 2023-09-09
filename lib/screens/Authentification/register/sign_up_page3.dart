@@ -48,6 +48,7 @@ class _SignUpPage3State extends State<SignUpPage3> {
       } else {
         Get.find<AuthController>().regUser!.password = password;
         if (_isClient) {
+          Get.find<AuthController>().register();
         } else {
           Get.toNamed(RouteHelper.getSignUpPage4());
         }

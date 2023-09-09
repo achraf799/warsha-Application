@@ -29,17 +29,10 @@ class _SignUpPage4State extends State<SignUpPage4> {
       if (_selected == 0) {
         showCustomSnackBar("Type in your password", title: "Password");
       } else {
-        //Get.find<AuthController>().register(name, email, phone, password, birthDate, sexe, city);
-
-        /* Get.find<AuthController>().register(name, email, phone).then((status) {
-          if (status) {
-            Get.put(ConversationController(conversationRepo: Get.find()));
-            print("Success registration");
-            Get.toNamed(RouteHelper.getHomePage());
-          } else {
-            showCustomSnackBar("Already registered");
-          }
-        });*/
+        bool loggedIn = await Get.find<AuthController>().register();
+        if (loggedIn) {
+          print("Registered succefully!!");
+        }
       }
     }
   }
@@ -166,20 +159,7 @@ class _SignUpPage4State extends State<SignUpPage4> {
               fontSize: Dimension.height10 * 2.5,
               buttonColor: const Color(0xFFD56E3B),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    transitionDuration: const Duration(milliseconds: 200),
-                    pageBuilder: (BuildContext context,
-                        Animation<double> animation,
-                        Animation<double> secondaryAnimation) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: const SignUpPage4(),
-                      );
-                    },
-                  ),
-                );
+                _registration();
               },
             ),
           ),

@@ -20,7 +20,7 @@ class RouteHelper {
   static const String signUpPage3 = "/sign_up_page3";
   static const String signUpPage4 = "/sign_up_page4";
 
-  static String getSplashPage() => splashPage;
+  static String getSplashPage() => splashPage; 
   static String getHomePage() => homePage;
   static String getPage01() => page01;
   static String getPage02() => page02;

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:warsha/data/controllers/auth_controller.dart';
 import 'package:warsha/screens/CustomButton.dart';
+import 'package:warsha/screens/messages/conversations_page.dart';
 import 'package:warsha/utils/dimensions.dart';
 import '../../../utils/show_custom_snackbar.dart';
 import '../../Page02.dart';
@@ -42,7 +43,7 @@ class _ScLogin1State extends State<ScLogin1> {
       } else {
         Get.find<AuthController>().login(phone, password).then((status) {
           if (status) {
-            print("logged in successfully");
+            Get.to(() => ConversationsPage());
           } else {
             showCustomSnackBar("Wrong credentials");
           }
